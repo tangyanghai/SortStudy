@@ -1,13 +1,33 @@
 package com.tyh.java.sortstudy;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.tyh.java.lib_base.BaseActivity;
+import com.tyh.java.lib_base.util.IntentUtil;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @OnClick(R.id.bt_to_sort_activity)
+    public void onViewClicked() {
+        IntentUtil.startActivity(this,SortActivity.class);
     }
 }
