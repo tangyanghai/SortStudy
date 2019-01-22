@@ -22,4 +22,8 @@ public enum SortEnum {
      * 插入排序
      */
     InsertSort,
+    /**
+     * 希尔排序
+     */
+    ShellSort,
 }

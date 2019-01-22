@@ -22,6 +22,9 @@ public class SortFactory {
             case InsertSort:
                 sort = new InsertSort(nums);
                 break;
+            case ShellSort:
+                sort = new ShellSort(nums);
+                break;
 
         }
         return sort;

@@ -11,6 +11,7 @@ import com.tyh.java.sortstudy.fragment.BubbleSortFragment;
 import com.tyh.java.sortstudy.fragment.InsertSortFragment;
 import com.tyh.java.sortstudy.fragment.QuickSortFragment;
 import com.tyh.java.sortstudy.fragment.SelectSortFragment;
+import com.tyh.java.sortstudy.fragment.ShellSortFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,10 +51,12 @@ public class SortActivity
         TextView btQuick = findViewById(R.id.bt_sort_type_quick);
         TextView btSelect = findViewById(R.id.bt_sort_type_select);
         TextView btInsert = findViewById(R.id.bt_sort_type_insert);
+        TextView btShell = findViewById(R.id.bt_sort_type_shell);
         btBubble.setOnClickListener(this);
         btQuick.setOnClickListener(this);
         btSelect.setOnClickListener(this);
         btInsert.setOnClickListener(this);
+        btShell.setOnClickListener(this);
     }
 
     private void showFragment(Fragment fragment) {
@@ -91,6 +94,9 @@ public class SortActivity
                 break;
             case R.id.bt_sort_type_insert:
                 showFragment(new InsertSortFragment());
+                break;
+            case R.id.bt_sort_type_shell:
+                showFragment(new ShellSortFragment());
                 break;
         }
     }

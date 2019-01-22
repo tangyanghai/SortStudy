@@ -42,4 +42,13 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/bt_sort_type_shell"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="希尔排序"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
 </LinearLayout>

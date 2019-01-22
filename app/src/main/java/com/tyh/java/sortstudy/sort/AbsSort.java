@@ -82,10 +82,6 @@ public abstract class AbsSort {
         System.out.print("\n"+title+": "+System.currentTimeMillis()/1000);
     }
 
-    protected void moveElementTo(int fromIndex,int toIndex){
-        nums[toIndex] = nums[fromIndex];
-    }
-
     /**
      * 元素变化回调
      */
