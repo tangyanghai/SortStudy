@@ -18,4 +18,8 @@ public enum SortEnum {
      * 选择排序
      */
     SelectSort,
+    /**
+     * 插入排序
+     */
+    InsertSort,
 }

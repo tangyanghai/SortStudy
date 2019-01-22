@@ -9,11 +9,11 @@ import com.tyh.java.sortstudy.sort.SortFactory;
  * 创建时间: 2019/1/22
  * 描述:
  */
-public class QuickFragment extends BubbleSortFragment {
+public class InsertSortFragment extends BubbleSortFragment {
     protected void sort() {
         if (canChangedByClick) {
             canChangedByClick = false;
-            AbsSort sort = SortFactory.createSort(SortEnum.QuickSort, arr);
+            AbsSort sort = SortFactory.createSort(SortEnum.InsertSort, arr);
             sort.setOnElementChangedListener(this);
             sort.start();
         }

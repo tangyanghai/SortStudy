@@ -19,6 +19,10 @@ public class SortFactory {
             case SelectSort:
                 sort = new SelectSort(nums);
                 break;
+            case InsertSort:
+                sort = new InsertSort(nums);
+                break;
+
         }
         return sort;
     }

@@ -8,7 +8,8 @@ import android.widget.TextView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tyh.java.lib_base.BaseActivity;
 import com.tyh.java.sortstudy.fragment.BubbleSortFragment;
-import com.tyh.java.sortstudy.fragment.QuickFragment;
+import com.tyh.java.sortstudy.fragment.InsertSortFragment;
+import com.tyh.java.sortstudy.fragment.QuickSortFragment;
 import com.tyh.java.sortstudy.fragment.SelectSortFragment;
 
 import butterknife.BindView;
@@ -46,11 +47,13 @@ public class SortActivity
         slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);//不包含ActionBar
         slidingMenu.setMenu(R.layout.menu_sort_types);
         TextView btBubble = findViewById(R.id.bt_sort_type_bubble);
-        TextView btQuike = findViewById(R.id.bt_sort_type_quick);
+        TextView btQuick = findViewById(R.id.bt_sort_type_quick);
         TextView btSelect = findViewById(R.id.bt_sort_type_select);
+        TextView btInsert = findViewById(R.id.bt_sort_type_insert);
         btBubble.setOnClickListener(this);
-        btQuike.setOnClickListener(this);
+        btQuick.setOnClickListener(this);
         btSelect.setOnClickListener(this);
+        btInsert.setOnClickListener(this);
     }
 
     private void showFragment(Fragment fragment) {
@@ -81,10 +84,13 @@ public class SortActivity
                 showFragment(new BubbleSortFragment());
                 break;
             case R.id.bt_sort_type_quick:
-                showFragment(new QuickFragment());
+                showFragment(new QuickSortFragment());
                 break;
             case R.id.bt_sort_type_select:
                 showFragment(new SelectSortFragment());
+                break;
+            case R.id.bt_sort_type_insert:
+                showFragment(new InsertSortFragment());
                 break;
         }
     }
