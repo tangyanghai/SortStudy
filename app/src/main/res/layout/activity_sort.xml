@@ -4,35 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.tyh.java.sortstudy.SortViewGroup
-        android:id="@+id/sv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="20dp" />
-
-    <Button
-        android:id="@+id/bt_bubble_sort"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="冒泡排序" />
+        android:background="@color/colorPrimary"
+        android:layout_height="50dp">
 
-    <Button
-        android:id="@+id/bt_quick_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="快速排序" />
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:src="@mipmap/ic_back"
+            android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/bt_reset_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="归位" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="22sp"
+            android:text="排序演示"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            />
 
-    <Button
-        android:id="@+id/bt_reset_arr_and_view"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/img_menu"
+            android:src="@mipmap/ic_menu"
+            android:layout_alignParentRight="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_sort"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="更换数组并归位" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

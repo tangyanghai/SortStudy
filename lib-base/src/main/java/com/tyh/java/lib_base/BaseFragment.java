@@ -26,11 +26,12 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         initView(view);
-
+        initData();
     }
 
     protected abstract int getContentView();
     public abstract void initView(View view);
+    public abstract void initData();
 
 
     public void showToash(String msg){
@@ -39,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public void showDebug(String msg){
+    public void showToashDebug(String msg){
         if (getActivity() != null) {
             ToastUtil.getInstance().showDebug(getActivity(),msg);
         }

@@ -1,22 +1,18 @@
 package com.tyh.java.sortstudy;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.os.Handler;
-import android.os.Message;
-import android.view.Gravity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tyh.java.lib_base.BaseActivity;
-import com.tyh.java.sortstudy.sort.AbsSort;
-import com.tyh.java.sortstudy.sort.ArrFactory;
-import com.tyh.java.sortstudy.sort.SortEnum;
-import com.tyh.java.sortstudy.sort.SortFactory;
-
-import java.util.ArrayList;
+import com.tyh.java.sortstudy.fragment.BubbleSortFragment;
+import com.tyh.java.sortstudy.fragment.QuickFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -25,21 +21,10 @@ import butterknife.OnClick;
  * 描述:
  */
 public class SortActivity
-        extends BaseActivity
-        implements AbsSort.OnElementChangedListener, SortViewGroup.OnViewStateChangedListener {
-
-    private final int ARR_COUNT = 10;
-
-    @BindView(R.id.sv)
-    SortViewGroup sv;
-
-    volatile ArrayList<int[]> list;
-
-    int[] arr;
-    int[] colorArr = new int[]{Color.GREEN, Color.RED, Color.BLUE, Color.YELLOW};
-
-    boolean canChangedByClick = true;
-    private boolean startChange = false;
+        extends BaseActivity implements View.OnClickListener {
+    @BindView(R.id.fl_sort)
+    FrameLayout flSort;
+    private SlidingMenu slidingMenu;
 
     @Override
     protected int getLayoutId() {
@@ -48,123 +33,56 @@ public class SortActivity
 
     @Override
     protected void initView() {
-        sv.setOnViewStateChangedListener(this);
+        showFragment(new BubbleSortFragment());
+        initMenu();
+    }
+
+    private void initMenu() {
+        //实例化菜单控件
+        slidingMenu = new SlidingMenu(this);
+        //设置相关属性
+        slidingMenu.setMode(SlidingMenu.RIGHT);//菜单靠右
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//全屏支持触摸拖拉
+        slidingMenu.setBehindOffset(600);//SlidingMenu划出时主页面显示的剩余宽度
+        slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);//不包含ActionBar
+        slidingMenu.setMenu(R.layout.menu_sort_types);
+        TextView btBubble = findViewById(R.id.bt_sort_type_bubble);
+        TextView btQuike = findViewById(R.id.bt_sort_type_quick);
+        btBubble.setOnClickListener(this);
+        btQuike.setOnClickListener(this);
+    }
+
+    private void showFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_sort, fragment).commit();
     }
 
     @Override
     protected void initData() {
-        list = new ArrayList<>();
-        arr = ArrFactory.createRandomArr(ARR_COUNT);
-        for (int i = 0; i < arr.length; i++) {
-            sv.addView(createView(arr[i]));
-        }
+
     }
 
-    private View createView(int value) {
-        TextView tv = new TextView(this);
-        tv.setText(String.valueOf(value));
-        tv.setTextColor(Color.BLACK);
-        tv.setGravity(Gravity.CENTER);
-        tv.setBackgroundColor(colorArr[0]);
-        SortViewGroup.LayoutParams params = new SortViewGroup.LayoutParams(80, 80);
-        tv.setLayoutParams(params);
-        return tv;
-    }
-
-
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 1) {
-                if (!list.isEmpty()) {
-                    int[] remove = list.remove(0);
-                    if (remove[0] >= 0) {
-                        sv.changeChild(remove[0], remove[1]);
-                    } else {
-                        View v = sv.getChildAtIndex(remove[1]);
-                        if (v != null) {
-                            v.setBackgroundColor(colorArr[3]);
-                        }
-                    }
-                    sendEmptyMessageDelayed(1, 500);
-                }
-            }
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
-    }
-
-    @Override
-    public void onElementChanged(int e1, int e2) {
-        list.add(new int[]{e1, e2});
-        if (!startChange) {
-            startChange = true;
-            handler.sendEmptyMessage(1);
-        }
-    }
-
-    @Override
-    public void onElementSortFinish(int index) {
-        list.add(new int[]{-1, index});
-        if (!startChange) {
-            startChange = true;
-            handler.sendEmptyMessage(1);
-        }
-    }
-
-    @OnClick({R.id.bt_bubble_sort, R.id.bt_quick_sort, R.id.bt_reset_view, R.id.bt_reset_arr_and_view})
+    @OnClick({R.id.img_back, R.id.img_menu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.bt_bubble_sort:
-                sort(SortEnum.BubbleSort);
+            case R.id.img_back:
+                finish();
                 break;
-            case R.id.bt_quick_sort:
-                sort(SortEnum.OriginQuikeSort);
+            case R.id.img_menu:
+                slidingMenu.showMenu();
                 break;
-            case R.id.bt_reset_view:
-                reset();
-                break;
-            case R.id.bt_reset_arr_and_view:
-                arr = ArrFactory.createRandomArr(ARR_COUNT);
-                reset();
-                break;
-        }
-    }
-
-    private void reset() {
-        handler.removeMessages(1);
-        canChangedByClick = true;
-        list.clear();
-        startChange = false;
-        sv.removeAllViews();
-        for (int i = 0; i < arr.length; i++) {
-            sv.addView(createView(arr[i]));
-        }
-    }
-
-    private void sort(SortEnum sortEnum) {
-        if (canChangedByClick) {
-            canChangedByClick = false;
-            AbsSort sort = SortFactory.createSort(sortEnum, arr);
-            sort.setOnElementChangedListener(this);
-            sort.start();
         }
     }
 
     @Override
-    public void onMoving(View v) {
-        v.setBackgroundColor(colorArr[1]);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_sort_type_bubble:
+                showFragment(new BubbleSortFragment());
+                break;
+            case R.id.bt_sort_type_quick:
+                showFragment(new QuickFragment());
+                break;
+        }
     }
 
-    @Override
-    public void onFinishedMove(View v) {
-        v.setBackgroundColor(colorArr[0]);
-    }
 }

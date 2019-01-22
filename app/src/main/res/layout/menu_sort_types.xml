@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:paddingTop="50dp">
+
+    <TextView
+        android:id="@+id/bt_sort_type_bubble"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="冒泡排序"
+        android:textSize="18sp"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/bt_sort_type_quick"
+        android:layout_width="match_parent"
+        android:textSize="18sp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="快速排序"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

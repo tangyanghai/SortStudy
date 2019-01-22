@@ -90,7 +90,7 @@ public abstract class AbsSort {
         /**
          * 两个元素调换位置
          */
-        void onElementChanged(int e1,int e2);
+        void onElementChanged(int index1,int index2);
 
         /**
          * 某个元素排序结束
