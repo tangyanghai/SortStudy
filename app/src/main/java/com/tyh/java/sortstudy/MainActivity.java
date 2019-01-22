@@ -1,11 +1,8 @@
 package com.tyh.java.sortstudy;
 
-import android.os.Bundle;
-
 import com.tyh.java.lib_base.BaseActivity;
 import com.tyh.java.lib_base.util.IntentUtil;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {

@@ -1,6 +1,5 @@
 package com.tyh.java.sortstudy;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,9 +9,9 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tyh.java.lib_base.BaseActivity;
 import com.tyh.java.sortstudy.fragment.BubbleSortFragment;
 import com.tyh.java.sortstudy.fragment.QuickFragment;
+import com.tyh.java.sortstudy.fragment.SelectSortFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -48,8 +47,10 @@ public class SortActivity
         slidingMenu.setMenu(R.layout.menu_sort_types);
         TextView btBubble = findViewById(R.id.bt_sort_type_bubble);
         TextView btQuike = findViewById(R.id.bt_sort_type_quick);
+        TextView btSelect = findViewById(R.id.bt_sort_type_select);
         btBubble.setOnClickListener(this);
         btQuike.setOnClickListener(this);
+        btSelect.setOnClickListener(this);
     }
 
     private void showFragment(Fragment fragment) {
@@ -81,6 +82,9 @@ public class SortActivity
                 break;
             case R.id.bt_sort_type_quick:
                 showFragment(new QuickFragment());
+                break;
+            case R.id.bt_sort_type_select:
+                showFragment(new SelectSortFragment());
                 break;
         }
     }

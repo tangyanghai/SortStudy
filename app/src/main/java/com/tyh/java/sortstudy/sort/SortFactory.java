@@ -13,11 +13,11 @@ public class SortFactory {
             case BubbleSort:
                 sort = new BubbleSort(nums);
                 break;
-            case QuikeSort:
-                sort = new QuikeSort(nums);
+            case QuickSort:
+                sort = new QuickSort(nums);
                 break;
-            case OriginQuikeSort:
-                sort = new OriginQuikeSort(nums);
+            case SelectSort:
+                sort = new SelectSort(nums);
                 break;
         }
         return sort;

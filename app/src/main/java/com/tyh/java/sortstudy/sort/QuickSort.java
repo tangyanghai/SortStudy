@@ -5,8 +5,8 @@ package com.tyh.java.sortstudy.sort;
  * 创建时间: 2019/1/17
  * 描述:
  */
-public class OriginQuikeSort extends AbsSort {
-    public OriginQuikeSort(int[] nums) {
+public class QuickSort extends AbsSort {
+    public QuickSort(int[] nums) {
         super(nums);
     }
 

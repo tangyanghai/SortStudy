@@ -12,16 +12,25 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="冒泡排序"
-        android:textSize="18sp"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/bt_sort_type_quick"
         android:layout_width="match_parent"
-        android:textSize="18sp"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="快速排序"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/bt_sort_type_select"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="选择排序"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 </LinearLayout>
